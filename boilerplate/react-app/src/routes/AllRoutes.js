@@ -1,6 +1,7 @@
-import Todo from "../pages/Todo";
+import Todo from "../pages/EmailGenerator";
 import Chat from "../pages/Chat";
 import { Routes, Route } from 'react-router-dom';
+import Final from "../pages/finalpage";
 
 export const AllRoutes = () => {
   return (
@@ -8,6 +9,7 @@ export const AllRoutes = () => {
       <Routes>
         <Route path='/' element={<Todo />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/final' element={<Final/>}/>
       </Routes>
     </div>
   );
