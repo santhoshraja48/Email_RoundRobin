@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ToEmail = () => {
+  const navigate = useNavigate();
   const [csvFile, setCsvFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [parsedData, setParsedData] = useState([]);
@@ -68,7 +70,7 @@ const ToEmail = () => {
     e.preventDefault();
     if (csvFile && parsedData.length > 0) {
       console.log("Uploading CSV data:", parsedData);
-      
+
       try {
         // Save all recipient records to MongoDB
         const promises = parsedData.map((record) =>
@@ -88,7 +90,9 @@ const ToEmail = () => {
         const errorCount = results.length - successCount;
 
         if (errorCount === 0) {
-          alert(`Successfully uploaded ${successCount} recipient records to database!`);
+          alert(
+            `Successfully uploaded ${successCount} recipient records to database!`
+          );
           // You can navigate to the next step or reset the form
           setCsvFile(null);
           setFileName("");
@@ -101,7 +105,9 @@ const ToEmail = () => {
         }
       } catch (error) {
         console.error("Error uploading recipients:", error);
-        alert("Error uploading recipients. Please check your connection and try again.");
+        alert(
+          "Error uploading recipients. Please check your connection and try again."
+        );
       }
     } else {
       alert("Please select a valid CSV file first");
@@ -261,6 +267,26 @@ const ToEmail = () => {
           }}
         >
           Upload CSV File
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate("/")}
+          style={{
+            backgroundColor: "#10b981",
+            marginTop: "1rem",
+            width: "10%",
+            color: "#ffffff",
+            padding: "0.75rem",
+            marginTop: "1rem",
+            borderRadius: "0.5rem",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "0.875rem",
+            fontWeight: "500",
+            marginLeft: "460px",
+          }}
+        >
+          Next
         </button>
 
         <div style={styles.instructions}>

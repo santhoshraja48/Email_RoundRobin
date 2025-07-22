@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function EmailAccountForm({ onNavigate }) {
+export default function EmailAccountForm() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -129,9 +131,7 @@ export default function EmailAccountForm({ onNavigate }) {
 
                   if (errorCount === 0) {
             alert(`Successfully saved ${successCount} email accounts!`);
-            if (onNavigate) {
-              onNavigate("to-email");
-            }
+            navigate("/to-email");
           } else {
           alert(
             `Saved ${successCount} accounts, ${errorCount} failed. Check console for details.`
@@ -156,9 +156,7 @@ export default function EmailAccountForm({ onNavigate }) {
           alert("Email account saved successfully!");
 
           // Navigate to ToEmail page
-          if (onNavigate) {
-            onNavigate("to-email");
-          }
+          navigate("/to-email");
         } else {
           const error = await response.json();
           console.error("Error saving email account:", error);
@@ -453,6 +451,23 @@ export default function EmailAccountForm({ onNavigate }) {
           {uploadMode === "bulk"
             ? `Save ${parsedAccounts.length} Email Accounts`
             : "Save Email Account"}
+        </button>
+        <button 
+          type="button" 
+          onClick={() => navigate("/to-email")} 
+          style={{backgroundColor: "#10b981", marginTop: "1rem", width: "10%",
+            color: "#ffffff",
+            padding: "0.75rem",
+            marginTop: "1rem",
+            borderRadius: "0.5rem",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "0.875rem",
+            fontWeight: "500",
+            marginLeft : "690px"
+            }}
+        >
+          Next
         </button>
       </form>
 
