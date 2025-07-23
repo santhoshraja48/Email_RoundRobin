@@ -32,8 +32,20 @@ for domain, config in domain_config.items():
         "per_sender_count": {sender: 0 for sender in config["senders"]}
     }
 
+# Store sent email logs
+email_logs = []
+
 # Dummy send function (replace with actual email logic if needed)
 def send_email(sender, recipient, subject, message):
+    log_entry = {
+        "time": datetime.now().strftime('%H:%M:%S'),
+        "sender": sender,
+        "recipient": recipient,
+        "subject": subject,
+        "message": message,
+        "status": "SENT"
+    }
+    email_logs.append(log_entry)
     print(f"{datetime.now().strftime('%H:%M:%S')} | SENT | {sender:<25} → {recipient:<25} | Subject: {subject} | Message: {message}")
 
 # Real-time sending loop

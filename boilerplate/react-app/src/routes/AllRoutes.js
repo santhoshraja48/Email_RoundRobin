@@ -1,5 +1,6 @@
 import Todo from "../pages/Todo";
 import Chat from "../pages/Chat";
+import EmailLog from "../pages/EmailLogs";
 import { Routes, Route } from 'react-router-dom';
 
 export const AllRoutes = () => {
@@ -8,6 +9,7 @@ export const AllRoutes = () => {
       <Routes>
         <Route path='/' element={<Todo />} />
         <Route path='/chat' element={<Chat />} />
+        <Route path='/email-log' element={<EmailLog />} />
       </Routes>
     </div>
   );

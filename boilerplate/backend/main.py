@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from API.todo.api import router as todo_router
 from API.messages.api import router as messages_router
+from API.email_log.api import router as email_log_router
 from db.session import engine
 from API.todo.models import SQLModel
 from startup import insert_default_app_version
@@ -29,3 +30,4 @@ def on_startup():
 # Include routers
 app.include_router(todo_router, prefix="/todos", tags=["todos"])
 app.include_router(messages_router, prefix="/messages", tags=["messages"])
+app.include_router(email_log_router)
